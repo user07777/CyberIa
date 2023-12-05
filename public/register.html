@@ -1,0 +1,92 @@
+<head>
+    <title>CyberIA</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="icon" type="image/png" href="favicon_64px.png" sizes="64x64">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <div id="app">
+        <div class="banner">
+            <img style="position: absolute;left:0;"  src="https://fauux.neocities.org/LainLaugh.gif" alt="lain" >
+            <img style="position: absolute;right:0;"  src="https://fauux.neocities.org/LainDressSlow.gif" alt="lain" >
+
+            <h1>Ｃｙｂｅｒ ＩＡ</h1>
+            <p>lets all love lain</p>
+        </div>
+        <div class="subbanner" style="position: fixed;z-index: 100;">
+            <a href="/"><button>home</button></a>
+            <a v-if="blogged" href="/profile"><button >profile</button></a>
+            <a v-else href="/register"><button>register</button></a>
+
+            <a href="/messages"><button>chat</button></a>
+            <a href="/search"><button>search</button></a>
+        </div><br>
+        <div class="boxRegister">
+            <h1>login</h1>
+            <form v-if="bregister" action="/register" method="POST" enctype="multipart/form-data">
+                <div class="profileimage">
+                    <img width="150px" height="150px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwG1jtZhjvv7kNCiH-jzSWwrqt5v2rae7YVl8bhYe-Yg&s">
+                </div>
+                <br>
+                <input  name="img" style="color: transparent;" type="file" class="file" accept="image/jpeg, image/png, image/jpg">
+                <h2 style="display: inline-block; color:white;margin-top: 160px;">Digite seu nick:</h2>
+                <input  style="margin-top: 10px;"  name="nick" class="button" type="text">
+                <h2 style="display: inline-block; color:white;margin-top: 30px;">Digite seu email:</h2>
+                <input  style="margin-top: 10px;" name="email" class="button" type="email">
+                <h2 style="display: inline-block; color:white;margin-top: 30px;">Digite sua senha:</h2>
+                <input  style="margin-top: 10px;" name = "pwd" class="button" type="password">
+                <button style="margin-bottom: 10%;" id="upldButton" type="submit">register</button>
+                <button @click.prevent="boxMode" style="margin-top: -5%;" id="upldButton" >login</button>
+
+            </form>
+            <form v-if="!bregister" action="/login" method="POST">
+                <h2 style="display: inline-block; color:white;margin-top: 30px;">Digite seu email:</h2>
+                <input  style="margin-top: 10px;" name="email" class="button" type="email">
+                <h2 style="display: inline-block; color:white;margin-top: 30px;">Digite sua senha:</h2>
+                <input  style="margin-top: 10px;" name="pwd" class="button" type="password">
+                <button style="margin-bottom: 10%;" id="upldButton" type="submit">login</button>
+                <button @click.prevent="boxMode" style="margin-top: -5%;" id="upldButton" >register</button>
+
+            </form>
+        </div>
+        <div v-if="er_code" class="pop">
+            <h1></h1>
+            <div style="color: red;margin-top: -.1;background-color: rgb(17,17,17);width: 20px;height: 100%;">
+                <i v-on:click="document.getElementsByClassName('pop')[0].remove()" class="fa fa-close" style="color:red; margin:0;position:relative;top: 4.9px;font-size: 30px;"></i>
+            </div>
+            <p  v-if="er_code==2" style="text-align: center;color:white;margin: -30 auto;font-size: 25px;">Usuario ou Email existentes</p>
+            <p  v-if="er_code==1" style="text-align: center;color:white;margin: -30 auto;font-size: 25px;">Email ou senha incorretas</p>
+        </div>
+    </div>
+
+</body>
+<script>
+var app = new Vue({
+    el: '#app',
+        data: {
+            bregister:false,
+            blogged:false,
+            er_code:0
+        },
+        methods:{
+            boxMode:function(){
+                this.bregister = !this.bregister
+            }
+        },
+        mounted () {
+            if(location.href.substr(location.href.indexOf("#")+1,location.href.indexOf("#")+1)!=''){
+                this.er_code=location.href.substr(location.href.indexOf("#")+1,location.href.indexOf("#")+1);
+            }
+        }
+            
+})
+window.onscroll = function() {
+    if (window.pageYOffset > 0) {
+    document.getElementsByClassName("subbanner")[0].style.top = "0px"
+    }if(window.pageYOffset ==0) {
+        document.getElementsByClassName("subbanner")[0].style.top = "185px"
+
+    }
+};
+</script>

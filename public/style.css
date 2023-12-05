@@ -1,0 +1,303 @@
+body{
+    background: url(https://fauux.neocities.org//bg_314.gif);
+}
+* {
+    margin: 0;
+}
+.banner{
+    width: 100%;
+    height: 185px;
+    background:linear-gradient(to right, rgba(0, 0, 0, 0.5) , rgba(17, 17, 17, 0.5)),
+    url(https://fauux.neocities.org///bg_76.gif);
+    background-position-y: 15%;
+    zoom: -50%;
+    box-shadow: 0px 0px 15px rgb(12, 12, 12);
+    
+}
+.banner > img {
+    margin-top: 0px; 
+    width:185px;
+    height: 185px;
+}
+.banner > h1{
+    color: white;
+    font-size: 60px;
+    position: relative;
+    text-align: center;
+    top: 45%;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    text-shadow: 0px 0px 10px #000000;
+}
+.banner > p {
+    color: #5a3039;
+    font-size: 15px;
+    position: relative;
+    text-align: center;
+    margin-top: 2.5%;
+    text-shadow: 0px 0px 10px #000000;
+}
+.subbanner {
+    width: 100%;
+    height: 40px;
+    margin-top: 0;
+    box-shadow: 0px 5px 5px #DC7288;
+    background-color: rgb(17, 17, 17);
+    text-align: center;
+}
+.subbanner > a > button{
+width: 7.5%;
+height: 75%;
+margin: 5 auto;
+
+background-color: rgb(17, 17, 17);
+border: none;
+color:#fff;
+box-shadow: 0px 2px 5px #DC7288;
+margin-left: 10px;
+transition: 0.3s ease-in-out;
+}
+.subbanner > a > button:hover{
+    background-color: #DC7288b7;
+    font-size: 15px;
+}
+.boxRegister{
+    width: 586px;
+    height: 635px;
+    background-color: rgb(31, 31, 31,0.6);
+    position: relative;
+    text-align: center;
+    margin: 3% auto;
+    box-shadow: 0px 0px 2px #DC7288;
+}
+.boxRegister > h1 {
+background-color: #DC7288;
+color: white;
+box-shadow: 0 3px 5px #000000;
+}
+.boxRegister  > form >  button{
+    width: 80%;
+    height: 30px;
+    background-color: rgb(17, 17, 17);
+    border: none;
+    color:#fff;
+    box-shadow: 0px 1px 5px #DC7288;
+    margin-left: 5;
+    transition: 0.3s ease-in-out;
+    margin-top: 10%;
+}
+.boxRegister  > form > button:hover{
+        background-color: #DC7288b7;
+        font-size: 15px;
+}
+.profileimage {
+    margin-left: 0;
+    position: absolute;
+    left: 0;
+    display: inline-block;
+}
+.button {
+    width: 80%;
+    height: 30px;
+    background-color: rgb(17, 17, 17,0.021);
+    border: none;
+    color:#fff;
+    box-shadow: 0px 1px 5px #DC7288;
+    margin-left: 5;
+    transition: 0.3s ease-in-out;
+}
+.file {
+    margin-left: 0;
+    position: absolute;
+    left: 0;
+    margin-top: 130px;
+}
+.pop{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    clear:both;
+    height:35px ;
+    background-color: rgba(19, 19, 19, 0.899);
+    display: inline-block;
+}
+.profile{
+    width: 1000px;
+    height: 835px;
+    background-color: rgb(31, 31, 31,0.6);
+    position: relative;
+    text-align: center;
+    margin: 3% auto;
+    box-shadow: 0px 0px 2px #DC7288;
+}
+.profile > textarea{
+    width: 90%;
+    height: 160px;
+    background-color: rgb(34, 34, 34);
+    outline: none;
+    border: none;
+    resize: none;
+    color: #DC7288;
+    font-size: 25px;
+    box-shadow: 0px 0px 2px #DC7288;
+}
+.profile > p {
+    margin-top: 530px;
+    color: #DC7288;
+    font-size: 30px;
+}
+.themes{
+    width: 100%;
+    min-height: 100%;
+    background: url(https://fauux.neocities.org//bg_314.gif);
+    position: relative;
+    text-align: center;
+    margin: 0% auto;
+    box-shadow: 0px 0px 2px #DC7288;
+    overflow: hidden;
+
+}
+.themes > article{
+    width: 1100px;
+    min-height: 275px;
+    background-color: rgb(31, 31, 31,0.6);
+    position: relative;
+    text-align: center;
+    margin: -20 auto;
+    box-shadow: 0px 0px 2px #DC7288;
+position: relative;
+        
+}
+.themes > article > h1 {
+    color: white;
+    background:#DC7288;
+}
+.regras{
+    text-align: center;
+    margin: auto;
+    height: 200px;
+    width: 80%;
+    border: 1px solid #DC7288;
+}
+.regras > h1 {
+    color: white;
+    background:#DC7288;
+    width: 80%;
+}
+.regras > span {
+    color: white;
+}
+
+.topics{
+    text-align: center;
+    margin: auto;
+    min-height: 100px;
+    width: 775px;
+    border: 1px solid #DC7288;
+    display: inline-block;
+    transition: 0.3s ease-in-out;
+}
+.topics > img {
+    float: left;
+    width: 110px;
+}
+.topics + .topics{
+margin-top: 5%;
+}
+.topics:hover{
+    background:#dc728796;
+    font-size: 120%;
+}
+.topics > a{
+    text-decoration: none;
+}
+.topics > a > h1 {
+    margin-left: 3%;
+    color: white;
+    background:#dc72873a;
+    width: 665px;
+}
+.topics > span {
+    color: white;
+}
+
+.topic{
+    width: 100%;
+    background-color: rgba(31, 31, 31, 0.021);
+    min-height: 50px;
+    transition: 0.3s ease-in-out;
+}
+.topic:hover {
+    background-color: #dc728750;
+
+}
+.topic > h2{
+    color: white;
+    font-size: 22px;
+}
+.topic > svg{
+    border-right: 2px  solid #fff;
+}
+.topic > img{
+    border-right: 2px  solid #fff;
+}
+.topic  > a {
+    color: white;
+    border: none;
+    text-decoration: none;
+}
+.options{
+    width: 1100px;
+    height: 35px;
+    background-color: rgb(31, 31, 31,0.6);
+    position: relative;
+    text-align: center;
+    margin: 5% auto;
+    box-shadow: 0px 0px 5px #DC7288;
+    transition: 0.3s ease-in-out;
+}
+.options > h1{
+    color: #fff;
+    position: absolute;
+    left: 35px;
+    display:table-cell;
+    vertical-align:middle;
+    font-size:25px;
+}
+.options > i{
+    color: #fff;
+    font-size: 35px;
+    display:table-cell;
+     vertical-align:middle;
+}
+.options:hover{
+background-color: rgb(43, 255, 0);
+}
+.cttn{
+    width: 90%;
+    height: 255px;
+    background-color: rgb(31, 31, 31,0.021);
+    outline: none;
+    border: none;
+    resize: none;
+    color: #ffffff;
+    font-size: 25px;
+    box-shadow: 0px 0px 2px #DC7288;
+    transition: 0.3s ease-in;
+}
+#button:hover{
+    background-color: #dc7288;
+    height:45px;
+    width: 60%;
+}
+.fixed.post {
+    min-width: 900px;
+    min-height: 275px;
+    background-color: rgb(31, 31, 31,0.6);
+    position: relative;
+    text-align: center;
+    margin: -20 auto;
+    box-shadow: 0px 0px 2px #DC7288;
+    position: relative;
+}

@@ -1,0 +1,102 @@
+<head>
+    <title>CyberIA</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="icon" type="image/png" href="favicon_64px.png" sizes="64x64">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <div id="app">
+        <div class="banner">
+            <img style="position: absolute;left:0;"  src="https://fauux.neocities.org/LainLaugh.gif" alt="lain" >
+            <img style="position: absolute;right:0;"  src="https://fauux.neocities.org/LainDressSlow.gif" alt="lain" >
+
+            <h1>Ｃｙｂｅｒ ＩＡ</h1>
+            <p>lets all love lain</p>
+        </div>
+        <div class="subbanner" style="position: fixed;z-index: 100;">
+            <a href="/"><button>home</button></a>
+            <a v-if="blogged" href="/profile"><button >profile</button></a>
+            <a v-else href="/register"><button>register</button></a>
+
+            <a href="/messages"><button>chat</button></a>
+            <a href="/search"><button>search</button></a>
+            <a><button @click="logout" style="position: absolute;right: 10;height: 30px;">sign-out</button></a>
+
+        </div><br><br>
+        <div class="profile">
+            <mark id="mark" style="box-shadow: 0px 0px 15px #1d1d1d; margin: 0 auto;color:rgb(41, 41, 41); text-align: center; background-color:d2738a;width: 100%; font-size: 45px;">
+                {{obj.nickname}}
+            </mark>
+            <div class="profileimage">
+                <img style="margin-left:5px ;margin-top: 5px; box-shadow: 0px 0px 5px #DC7288;" width="250px" height="250px" v-bind:src="obj.img">
+            </div><br>
+            <p>ｂｉｏｇｒａｆｙ</p><br>
+            <textarea id="bio">
+
+            </textarea>
+        </div>
+    </div>
+
+</body>
+<script>
+var app = new Vue({
+    el: '#app',
+        data: {
+            blogged:false,
+            obj:{}
+        },
+        methods:{
+            logout:function(){
+                fetch("/signout",{method:'POST'}).then(x => {}).then(x => {})
+                this.username=""
+                this.blogged=false
+            }
+        },
+        mounted () {
+            if(this.username!="" && this.username!='user='){
+                this.blogged=true
+            }
+            var req = new XMLHttpRequest();
+            req.open('GET', document.location, false);
+            req.send(null);
+            var headers = req.getAllResponseHeaders().toLowerCase();
+            this.obj=JSON.parse(headers.substring(headers.indexOf("obj")+5,headers.lastIndexOf("}\r")+1))
+        }
+            
+})
+abcn = "abcdefghijklmnopqrstuvwxyz"
+abc = "ａｂｃｄｅｆｇｈｉｊｋｌｍｎｏｐｑｒｓｔｕｖｗｘｙｚ"
+document.getElementById("bio").onchange = (e) =>{
+    val = document.getElementById("bio").value
+    nval=""
+    for(j =0; j < val.length;j++) {
+        for(i =0; i < abc.length;i++) {
+            if(abcn.charAt(i) == val.charAt(j) )
+                 nval+= abc.charAt(i)
+        }
+    }
+    document.getElementById("bio").value = nval
+}
+document.getElementById("mark").onload = (e) =>{
+    val = document.getElementById("mark").value
+    nval=""
+    for(j =0; j < val.length;j++) {
+        for(i =0; i < abc.length;i++) {
+            if(abcn.charAt(i) == val.charAt(j) )
+                 nval+= abc.charAt(i)
+        }
+    }
+    document.getElementById("mark").value = nval
+}
+window.onscroll = function() {
+    if (window.pageYOffset > 0) {
+    document.getElementsByClassName("subbanner")[0].style.top = "0px"
+    }if(window.pageYOffset ==0) {
+        document.getElementsByClassName("subbanner")[0].style.top = "185px"
+
+    }
+};
+
+
+</script>
