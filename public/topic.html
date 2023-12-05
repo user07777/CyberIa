@@ -1,0 +1,124 @@
+
+<head>
+    <title>CyberIA</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="icon" type="image/png" href="favicon_64px.png" sizes="64x64">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mahajani&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <div id="app">
+        <div class="banner">
+            <img style="position: absolute;left:0;"  src="https://fauux.neocities.org/LainLaugh.gif" alt="lain" >
+            <img style="position: absolute;right:0;"  src="https://fauux.neocities.org/LainDressSlow.gif" alt="lain" >
+
+            <h1>Ｃｙｂｅｒ ＩＡ</h1>
+            <p>lets all love lain</p>
+        </div>
+        <div class="subbanner" style="position: fixed;z-index: 100;">
+            <a href="/"><button>home</button></a>
+            <a v-if="blogged" href="/profile"><button >profile</button></a>
+            <a v-else href="/register"><button>register</button></a>
+
+            <a href="/messages"><button>chat</button></a>
+            <a href="/search"><button>search</button></a>
+            <a><button @click="logout" style="position: absolute;right: 10;height: 30px;">sign-out</button></a>
+
+        </div><br><br>
+        <div class="themes">
+            <article class="fixed post"  style="margin-top: 5%; min-height: 385px;" >
+                    <div class="profileimage">
+                        <a v-bind:href="'/profile?nick='+pinned[0].AUTHOR" >
+                            <img style="margin-left:5px ;margin-top: 5px; box-shadow: 0px 0px 5px #DC7288;" width="250px" height="250px" v-bind:src="img">
+                        </a>
+                    </div>
+                    <mark id="mark" style="box-shadow: 0px 0px 15px #1d1d1d; margin: 0 auto;color:rgb(41, 41, 41); text-align: center; background-color:d2738a;width: 100%; font-size: 45px;">
+                        {{pinned[0].TITLE}} 
+                    </mark>
+                    <h2 style="margin-top: 220px; color:white">{{pinned[0].content}}</h2>
+                    <br>By:<br>{{pinned[0].AUTHOR}}
+
+                </div>
+                <br>
+            </article>
+        </div>
+    
+    </body>
+    <script>
+    var app = new Vue({
+        el: '#app',
+            data: {
+                blogged:false,
+                pinned:[],
+                postmode:false,  
+                title:""  ,
+                img:""
+            },
+            methods:{
+                logout:function(){
+                    fetch("/signout",{method:'POST'}).then(x => {}).then(x => {})
+                    this.username=""
+                    this.blogged=false
+                },
+                nline:function(e){
+                    if (e) event.preventDefault();
+                    if (e) event.stopPropagation();
+                    if(document.activeElement.tagName != "INPUT")
+                        document.activeElement.value += "\n"
+                    else
+                        document.activeElement.value += "n"
+                },
+                imgs_:(e) => {
+                    var dataa = new FormData()
+                    for (const file of e.target.files) 
+                        dataa.append('img',file)
+                    fetch('/uploadImg', {
+                        method: 'POST',
+                        body: dataa
+                    }).then(_ => {
+                        return _.json()
+                    }).then(x => {
+                        x=x.replace("[","")
+                        x=x.replace("]","")
+                        x.split(",").forEach(x => document.getElementsByClassName("cttn")[0].value += x + "\n")
+                    })
+                    
+                }
+            },
+            mounted () {
+                if(this.username!="" && this.username!='user='){
+                    this.blogged=true
+                }
+                var ddata;
+                var req = new XMLHttpRequest();
+                req.open('GET', document.location, false);
+                req.send(null);
+                var headers = req.getAllResponseHeaders();
+                this.title = headers.substring(headers.indexOf("id")+5,headers.indexOf("\r\nlast")-1)
+                fetch("/getPost?st=abc&s="+this.title.replace("%20"," "),{method:'GET'}).then(x =>  {
+                    return x.json()
+                }
+                ).then(data => {
+                    this.pinned = data
+                    nick=data[0].AUTHOR
+                    console.log(nick)
+                    fetch("imgByAuthor?nick="+nick,{method:'GET'}).then(x =>  { 
+                        return x.json()
+                    } ).then(data_ => {
+                            this.img = data_.img
+                    })
+                })
+            }
+                
+    })
+    window.onscroll = function() {
+        if (window.pageYOffset > 0) {
+        document.getElementsByClassName("subbanner")[0].style.top = "0px"
+        }if(window.pageYOffset ==0) {
+            document.getElementsByClassName("subbanner")[0].style.top = "185px"
+        }
+    };
+    </script>
